@@ -5,7 +5,7 @@
 #include <stdio.h>
 
 
-typedef struct HIDItem {
+typedef struct HID_Item_t {
 	uint8_t format;
 	uint8_t size;
 	uint8_t type;
@@ -19,7 +19,7 @@ typedef struct HIDItem {
 		int32_t s32;
 		uint8_t *longdata;
 	} data;
-} HIDItem;
+} HID_Item_t;
 
 /*
  * HID report item format
@@ -286,14 +286,9 @@ typedef struct HIDItem {
 
 #define HID_REPORT_TYPES	3
 
-uint8_t *hid_fetch_item(uint8_t *start, uint8_t *end, HIDItem *item);
+uint8_t *hid_fetch_item(uint8_t *start, uint8_t *end, HID_Item_t *item);
 
-
-/**
- * 暂时通过数据描述符的方式，对需要处理的数据进行定义
- * TODO: 实现HID描述符解析得到该数据定义
- */
-typedef struct HIDDataDescriptor {
+typedef struct HID_DataDescriptor_t {
 	int32_t physical_minimum;
 	int32_t physical_maximum;
 	int32_t logical_minimum;
@@ -302,6 +297,6 @@ typedef struct HIDDataDescriptor {
 	uint32_t count;
 
 	uint32_t report_buf_off; // byte
-} HIDDataDescriptor;
+} HID_DataDescriptor_t;
 
 #endif /* HID_H */

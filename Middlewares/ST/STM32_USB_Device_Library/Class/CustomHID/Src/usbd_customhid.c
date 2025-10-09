@@ -253,7 +253,7 @@ static uint8_t USBD_CUSTOM_HID_Setup(USBD_HandleTypeDef *pdev,
             if ((req->wValue >> 8) == CUSTOM_HID_DESCRIPTOR_TYPE)
             {
               pbuf = usbd_composite_hid.hid_desc[req->wIndex];
-              len = MIN(sizeof(USB_HIDDescriptor_t), req->wLength);
+              len = MIN(sizeof(USB_HID_Descriptor_t_t), req->wLength);
             }
           }
 

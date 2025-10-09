@@ -27,7 +27,7 @@ enum USBHID_ERRNO{
 #pragma pack (push)
 #pragma pack (1)
 
-typedef struct HIDDescriptor {
+typedef struct HID_Descriptor_t {
 	uint8_t bLength;
 	uint8_t bDescriptorType;
 	uint16_t bcdHID;
@@ -35,15 +35,15 @@ typedef struct HIDDescriptor {
 	uint8_t bNumDescriptors;
 	uint8_t bClassDescriptorType_e;
 	uint16_t wClassDescriptorLength;
-} HIDDescriptor;
+} HID_Descriptor_t;
 
 #pragma pack (pop)
 
-typedef struct USBHIDDevice_t {
+typedef struct USBHID_Device_t {
     USB_Device_t *udev;
     uint8_t interface_num;
     uint8_t ep_in;
-    HIDDescriptor *hid_desc;
+    HID_Descriptor_t *hid_desc;
 
     uint8_t *raw_hid_report_desc;
     uint16_t raw_hid_report_desc_len;
@@ -56,15 +56,15 @@ typedef struct USBHIDDevice_t {
     uint8_t *report_buffer; // [current report, last report]
     uint32_t report_buffer_length; // report_buffer_length = 2 * report_length
     uint32_t report_buffer_last_offset;
-} USBHIDDevice_t;
+} USBHID_Device_t;
 
-int usbhid_fetch_report(USBHIDDevice_t *dev);
+int usbhid_fetch_report(USBHID_Device_t *dev);
 
-int usbhid_alloc_report_buffer(USBHIDDevice_t *dev, uint32_t length);
-void usbhid_free_report_buffer(USBHIDDevice_t *dev);
-int usbhid_get_report_buffer(USBHIDDevice_t *dev, uint8_t **buffer, uint32_t *length, uint8_t is_last);
+int usbhid_alloc_report_buffer(USBHID_Device_t *dev, uint32_t length);
+void usbhid_free_report_buffer(USBHID_Device_t *dev);
+int usbhid_get_report_buffer(USBHID_Device_t *dev, uint8_t **buffer, uint32_t *length, uint8_t is_last);
 
-void usbhid_close(USBHIDDevice_t *dev);
-int usbhid_open(USB_Device_t *udev, uint8_t interface_num, USBHIDDevice_t *dev);
+void usbhid_close(USBHID_Device_t *dev);
+int usbhid_open(USB_Device_t *udev, uint8_t interface_num, USBHID_Device_t *dev);
 
 #endif /* USBHID_H */

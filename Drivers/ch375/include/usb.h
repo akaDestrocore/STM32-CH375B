@@ -149,7 +149,7 @@ typedef struct USB_Descriptor_t {
     uint8_t bDesriptorType;
 } USB_Descriptor_t;
 
-typedef struct USB_HIDDescriptor_t {
+typedef struct USB_HID_Descriptor_t_t {
 	uint8_t bLength;
 	uint8_t bDescriptorType;
 	uint16_t bcdHID;
@@ -157,7 +157,7 @@ typedef struct USB_HIDDescriptor_t {
 	uint8_t bNumDescriptors;
 	uint8_t bClassDescriptorType_e;
 	uint16_t wClassDescriptorLength;
-} USB_HIDDescriptor_t;
+} USB_HID_Descriptor_t_t;
 
 typedef struct USB_EndpointDescriptor_t {
 	/** Size of this descriptor (in bytes) */

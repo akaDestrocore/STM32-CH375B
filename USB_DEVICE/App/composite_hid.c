@@ -29,23 +29,23 @@ uint8_t *AppendEndpointDescriptor(uint8_t *start, uint8_t *end,
   return start + sizeof(USB_EndpointDescriptor_t);
 }
 
-uint8_t *AppendHIDDescriptor(uint8_t *start, uint8_t *end, uint16_t report_desc_size)
+uint8_t *AppendHID_Descriptor_t(uint8_t *start, uint8_t *end, uint16_t report_desc_size)
 {
   assert(start);
   assert(end);
-  USB_HIDDescriptor_t *desc = (USB_HIDDescriptor_t *)start;
+  USB_HID_Descriptor_t_t *desc = (USB_HID_Descriptor_t_t *)start;
 
-  if (end - start < sizeof(USB_HIDDescriptor_t)) {
+  if (end - start < sizeof(USB_HID_Descriptor_t_t)) {
     return NULL;
   }
-  desc->bLength = sizeof(USB_HIDDescriptor_t);
+  desc->bLength = sizeof(USB_HID_Descriptor_t_t);
   desc->bDescriptorType = USB_DT_HID;
   desc->bcdHID = cpu_to_le16(0x0111); // HID 1.11
   desc->bCountryCode = 0;
   desc->bNumDescriptors = 0x01;
   desc->bClassDescriptorType_e = USB_DT_REPORT;
   desc->wClassDescriptorLength = cpu_to_le16(report_desc_size);
-  return start + sizeof(USB_HIDDescriptor_t);
+  return start + sizeof(USB_HID_Descriptor_t_t);
 }
 
 
@@ -100,7 +100,7 @@ uint16_t GetConfigDescTotalLength(uint8_t interface_count)
   // interface desc
   total_len += (interface_count * sizeof(USB_InterfaceDescriptor_t));
   // hid desc
-  total_len += (interface_count * sizeof(USB_HIDDescriptor_t));
+  total_len += (interface_count * sizeof(USB_HID_Descriptor_t_t));
   // endpoint desc
   total_len += (interface_count * sizeof(USB_EndpointDescriptor_t));
   return total_len;
@@ -151,7 +151,7 @@ uint8_t USBD_COMPOSITE_HID_Init()
 
     usbd_composite_hid.hid_desc[i] = cursor;
 
-    cursor = AppendHIDDescriptor(cursor, config_desc_buf_end, report_desc_len);
+    cursor = AppendHID_Descriptor_t(cursor, config_desc_buf_end, report_desc_len);
     cursor = AppendEndpointDescriptor(cursor, config_desc_buf_end,
       ep_addr, max_pack, interval);
   }

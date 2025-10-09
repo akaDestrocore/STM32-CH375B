@@ -12,10 +12,10 @@
 #define HID_MOUSE_AXIS_Y 1
 
 typedef struct HIDMouse_t {
-    USBHIDDevice_t *hid_dev;
+    USBHID_Device_t *hid_dev;
 
-    HIDDataDescriptor button;
-    HIDDataDescriptor orientation;
+    HID_DataDescriptor_t button;
+    HID_DataDescriptor_t orientation;
     uint32_t report_length;
 } HIDMouse_t;
 
@@ -26,6 +26,6 @@ int hid_mouse_set_orientation(HIDMouse_t *dev, uint32_t axis_num, int32_t value,
 
 int hid_mouse_fetch_report(HIDMouse_t *dev);
 void hid_mouse_close(HIDMouse_t *dev);
-int hid_mouse_open(USBHIDDevice_t *usbhid_dev, HIDMouse_t *dev);
+int hid_mouse_open(USBHID_Device_t *usbhid_dev, HIDMouse_t *dev);
 
 #endif /* HID_MOUSE_H */

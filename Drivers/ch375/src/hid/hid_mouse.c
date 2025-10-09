@@ -13,7 +13,7 @@
 
 int hid_mouse_get_button(HIDMouse_t *dev, uint32_t button_num, uint32_t *value, uint8_t is_last)
 {
-    HIDDataDescriptor *desc;
+    HID_DataDescriptor_t *desc;
     uint8_t *report_buf;
     uint8_t *field_buf;
     uint8_t byte_off = button_num / 8;
@@ -48,7 +48,7 @@ int hid_mouse_get_button(HIDMouse_t *dev, uint32_t button_num, uint32_t *value, 
 
 int hid_mouse_set_button(HIDMouse_t *dev, uint32_t button_num, uint32_t value, uint8_t is_last)
 {
-    HIDDataDescriptor *desc;
+    HID_DataDescriptor_t *desc;
     uint8_t *report_buf;
     uint8_t *field_buf;
     uint8_t byte_off = button_num / 8;
@@ -83,7 +83,7 @@ int hid_mouse_set_button(HIDMouse_t *dev, uint32_t button_num, uint32_t value, u
 
 int hid_mouse_get_orientation(HIDMouse_t *dev, uint32_t axis_num, int32_t *value, uint8_t is_last)
 {
-    HIDDataDescriptor *desc;
+    HID_DataDescriptor_t *desc;
     uint8_t *report_buf;
     uint8_t *field_buf;
     uint8_t value_byte_size;
@@ -133,7 +133,7 @@ int hid_mouse_get_orientation(HIDMouse_t *dev, uint32_t axis_num, int32_t *value
 
 int hid_mouse_set_orientation(HIDMouse_t *dev, uint32_t axis_num, int32_t value, uint8_t is_last)
 {
-    HIDDataDescriptor *desc;
+    HID_DataDescriptor_t *desc;
     uint8_t *report_buf;
     uint8_t *field_buf;
     uint8_t value_byte_size;
@@ -198,8 +198,8 @@ void hid_mouse_close(HIDMouse_t *dev)
 
 static int parser_hid_report(HIDMouse_t *dev, uint8_t *report, uint16_t len)
 {
-    HIDDataDescriptor *btn = &dev->button;
-    HIDDataDescriptor *orien = &dev->orientation;
+    HID_DataDescriptor_t *btn = &dev->button;
+    HID_DataDescriptor_t *orien = &dev->orientation;
     
     // PVID=046D:C092 G102 LIGHTSYNC Gaming Mouse
     dev->report_length = 8;
@@ -223,7 +223,7 @@ static int parser_hid_report(HIDMouse_t *dev, uint8_t *report, uint16_t len)
     return 0;
 }
 
-int hid_mouse_open(USBHIDDevice_t *usbhid_dev, HIDMouse_t *dev)
+int hid_mouse_open(USBHID_Device_t *usbhid_dev, HIDMouse_t *dev)
 {
     int ret;
 

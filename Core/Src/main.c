@@ -25,7 +25,7 @@ typedef struct DeviceInput_t {
 
   CH375_Context_t *ch375_ctx;
   USB_Device_t usbdev;
-  USBHIDDevice_t hiddev;
+  USBHID_Device_t hiddev;
   HIDMouse_t mouse;
   HIDKeyboard_t keyboard;
 
@@ -150,7 +150,7 @@ static int handle_auto_gun_press(HIDMouse_t *dev, uint8_t fetch_success)
 
 static int handle_mosue(HIDMouse_t *dev, uint8_t interface_num)
 {
-  USBHIDDevice_t *hiddev = dev->hid_dev;
+  USBHID_Device_t *hiddev = dev->hid_dev;
   uint8_t *report_buf = NULL;
   int ret;
   uint32_t value;
@@ -218,7 +218,7 @@ void print_mouse_recoard()
 
 static int handle_keyboard(HIDKeyboard_t *dev, uint8_t interface_num)
 {
-  USBHIDDevice_t *hiddev = dev->hid_dev;
+  USBHID_Device_t *hiddev = dev->hid_dev;
   uint8_t *report_buf = NULL;
   int ret;
   uint32_t value;
@@ -574,7 +574,7 @@ static void open_device_out()
 
   for (i = 0; i < CH375_MODULE_NUM; i++) {
     DeviceInput_t *devin = &s_arr_devin[i];
-    USBHIDDevice_t *hiddev = &devin->hiddev;
+    USBHID_Device_t *hiddev = &devin->hiddev;
     // TODO: get actual maxpack and interval
     status = USBD_COMPOSITE_HID_InterfaceRegister(i,
       (uint8_t *)hiddev->hid_desc, hiddev->raw_hid_report_desc, hiddev->raw_hid_report_desc_len, 8, 1);
@@ -596,7 +596,7 @@ static int open_device_in(DeviceInput_t *devin)
   assert(devin);
 
   USB_Device_t *udev = &devin->usbdev;
-  USBHIDDevice_t *hiddev = &devin->hiddev;
+  USBHID_Device_t *hiddev = &devin->hiddev;
   HIDMouse_t *mouse = &devin->mouse;
   HIDKeyboard_t *keyboard = &devin->keyboard;
   int ret;

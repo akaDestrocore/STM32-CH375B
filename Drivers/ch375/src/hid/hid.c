@@ -1,7 +1,7 @@
 #include "hid/hid.h"
 #include "bswap.h"
 
-uint8_t *hid_fetch_item(uint8_t *start, uint8_t *end, HIDItem *item)
+uint8_t *hid_fetch_item(uint8_t *start, uint8_t *end, HID_Item_t *item)
 {
 	uint8_t fb;
 

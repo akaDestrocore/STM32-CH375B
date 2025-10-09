@@ -45,11 +45,11 @@
 
 
 typedef struct HIDKeyboard_t {
-    USBHIDDevice_t *hid_dev;
+    USBHID_Device_t *hid_dev;
     
-    HIDDataDescriptor control;
-    HIDDataDescriptor led;
-    HIDDataDescriptor keycode;
+    HID_DataDescriptor_t control;
+    HID_DataDescriptor_t led;
+    HID_DataDescriptor_t keycode;
 
     uint32_t report_length;
 } HIDKeyboard_t;
@@ -63,6 +63,6 @@ int hid_keyboard_get_key(HIDKeyboard_t *dev, uint32_t key_code, uint32_t *value,
 
 int hid_keyboard_fetch_report(HIDKeyboard_t *dev);
 void hid_keyboard_close(HIDKeyboard_t *dev);
-int hid_keyboard_open(USBHIDDevice_t *usbhid_dev, HIDKeyboard_t *dev);
+int hid_keyboard_open(USBHID_Device_t *usbhid_dev, HIDKeyboard_t *dev);
 
 #endif /* HID_KEYBOARD_H */

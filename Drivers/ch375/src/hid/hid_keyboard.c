@@ -10,7 +10,7 @@
 
 int hid_keyboard_get_ctrl(HIDKeyboard_t *dev, uint32_t ctrl_code, uint32_t *value, uint8_t is_last)
 {
-    HIDDataDescriptor *desc;
+    HID_DataDescriptor_t *desc;
     uint8_t *report_buf;
     uint8_t *field_buf;
     uint8_t byte_off = 0;
@@ -46,7 +46,7 @@ int hid_keyboard_get_ctrl(HIDKeyboard_t *dev, uint32_t ctrl_code, uint32_t *valu
 
 int hid_keyboard_set_ctrl(HIDKeyboard_t *dev, uint32_t ctrl_code, uint32_t value, uint8_t is_last)
 {
-    HIDDataDescriptor *desc;
+    HID_DataDescriptor_t *desc;
     uint8_t *report_buf;
     uint8_t *field_buf;
     uint8_t byte_off = 0;
@@ -78,7 +78,7 @@ int hid_keyboard_set_ctrl(HIDKeyboard_t *dev, uint32_t ctrl_code, uint32_t value
 
 int hid_keyboard_get_led(HIDKeyboard_t *dev, uint32_t led_code, uint32_t *value, uint8_t is_last)
 {
-    HIDDataDescriptor *desc;
+    HID_DataDescriptor_t *desc;
     uint8_t *report_buf;
     uint8_t *field_buf;
     uint8_t byte_off = 0;
@@ -114,7 +114,7 @@ int hid_keyboard_get_led(HIDKeyboard_t *dev, uint32_t led_code, uint32_t *value,
 
 int hid_keyboard_set_led(HIDKeyboard_t *dev, uint32_t led_code, uint32_t value, uint8_t is_last)
 {
-    HIDDataDescriptor *desc;
+    HID_DataDescriptor_t *desc;
     uint8_t *report_buf;
     uint8_t *field_buf;
     uint8_t byte_off = 0;
@@ -146,7 +146,7 @@ int hid_keyboard_set_led(HIDKeyboard_t *dev, uint32_t led_code, uint32_t value, 
 
 int hid_keyboard_get_key(HIDKeyboard_t *dev, uint32_t key_code, uint32_t *value, uint8_t is_last)
 {
-    HIDDataDescriptor *desc;
+    HID_DataDescriptor_t *desc;
     uint8_t *report_buf;
     uint8_t *field_buf;
     int i;
@@ -208,9 +208,9 @@ void hid_keyboard_close(HIDKeyboard_t *dev)
 
 static int parser_hid_report(HIDKeyboard_t *dev, uint8_t *report, uint16_t len)
 {
-    HIDDataDescriptor *ctrl = &dev->control;
-    HIDDataDescriptor *led = &dev->led;
-    HIDDataDescriptor *keycode = &dev->keycode;
+    HID_DataDescriptor_t *ctrl = &dev->control;
+    HID_DataDescriptor_t *led = &dev->led;
+    HID_DataDescriptor_t *keycode = &dev->keycode;
     
     // PVID=0951:16D2 HyperX Alloy FPS Pro Mechanical Gaming Keyboard
     // {00}  {00}  {05 00 00 00 00 00}
@@ -247,7 +247,7 @@ static int parser_hid_report(HIDKeyboard_t *dev, uint8_t *report, uint16_t len)
     return 0;
 }
 
-int hid_keyboard_open(USBHIDDevice_t *usbhid_dev, HIDKeyboard_t *dev)
+int hid_keyboard_open(USBHID_Device_t *usbhid_dev, HIDKeyboard_t *dev)
 {
     int ret;
 

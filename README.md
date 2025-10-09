@@ -1,5 +1,3 @@
-## HID device data dynamic modification
-With this project, You can cheat in FPS games.
 
 ## TODO
 - Y] USB host basic api
@@ -10,15 +8,7 @@ With this project, You can cheat in FPS games.
 - Y] HID Device(composite device[mouse, keyboard])
 - Y] Finish HID data (keyboard and mouse) transmission
 - Y] HID data dynamic modification
-- Y] HID Report Descriptor Clone
-- T] Optimize HID Device Code
-- T] Solve the problem that Initialization Delay of CH375 is not enough
-- T] define a level for timeout error log
-- T] improve auto gun press data
-
-> Y: done
-> X: doing
-> T: todo
+- Y] HID Report Descriptor Clon
 
 ## Environment
 1. Hardware
@@ -32,26 +22,6 @@ With this project, You can cheat in FPS games.
     - gcc-arm-none-eabi
     - vscode (with Arm extensions)
 
-## Reference
-1. USB docs from USB offical website (www.usb.org).
-> usb_20.pdf
-
-2. HID report descriptors from this website.
-> https://eleccelerator.com/tutorial-about-usb-hid-report-descriptors/
-
-> You can all so use the HID Descriptor Tool from usb.org
-> https://www.usb.org/document-library/hid-descriptor-tool
-
-3. libusb (API design, constant definition referencing)
-> offical website: https://libusb.info/
-> GitHub Repository: https://github.com/libusb/libusb
-
-4. CH375 offical documents (offical website is http://www.wch.cn/products/CH375.html, you can find more docs from here)
-> CH375DS1.PDF, CH375DS2.PDF
-
-
-## Remaining Problems
-1. 0951:16D2 HyperX Alloy FPS Pro Mechanical Gaming Keyboard, control transfer error(token send failed) after set configuration.
 
 
 ## Project Structure
